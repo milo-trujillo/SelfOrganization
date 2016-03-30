@@ -7,22 +7,23 @@ require_relative Behavior
 =begin
 	MAIN FILE
 
-	This file is used to describe how the bugs behave, and do initialization
-	for the simulation. Users should only need to change the "step" method
-	inside the Bug class to get different behavior. You may also want to
-	tweak constants in "configuration.rb" to change simulation parameters.
+	This file is used for initialization and defining what attributes each
+	bug has. Unless you want to add more variables to the bug and change
+	how it calls the "bugStep" function you probably want to leave this file
+	alone.
 
 	The Ruby-Processing-Java mesh is a little clunky, and the result is that
 	any processing functions (like drawing, or setting screen dimensions)
 	MUST BE DONE IN THIS FILE. Other stuff, like global configuration or
-	utility functions, have been split into their own files.
+	utility functions, or individual bug behaviors, have been split into 
+	their own files.
 =end
 
 =begin
-	BUG LOGIC
+	BUG CLASS
 
-	This is where the complexity is. Each bug needs to figure out its movement
-	purely based on the positions of its neighbors.
+	Defines each bug, its remotely-viewable variables, and how it initializes
+	and draws itself. Bug behavior is defined in another file.
 =end
 class Bug
 	attr_reader :x
