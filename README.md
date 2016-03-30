@@ -28,4 +28,4 @@ Here's some bugs shortly after initialization, while they're still spread across
 
 And here are those same bugs a while later, clustered near one another:
 
-![Clustered Bugs](screenshots/cluser.png)
+![Clustered Bugs](screenshots/cluster.png)
