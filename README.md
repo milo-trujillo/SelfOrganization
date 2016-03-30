@@ -15,6 +15,6 @@ Once the prerequisites are installed you can run the project by launching the sh
 To build your own behavior
 --------------------------
 
-To write your own bug behavior simply make a new ruby file in the "behaviors" folder. An example is provided in "behaviors/clump.rb" with more detailed instructions.
+To write your own bug behavior simply make a new ruby file in the "behaviors" folder. An example is provided in "behaviors/cluster.rb" with more detailed instructions.
 
 Once you have written your own behavior you will want to edit "configuration.rb" to set your new behavior and change any parameters like screen size or starting number of bugs. Then you're ready!
