@@ -33,6 +33,12 @@ def stepRand(x, y, distance)
 	return [x + d[0], y + d[1]]
 end
 
+# Steps in a particular direction, where direction is a vector
+def stepDirection(x, y, dir, distance)
+	d = dir.normalize * distance
+	return [x + d[0], y + d[1]]
+end
+
 # Given a starting and ending coordinate,
 # returns unit vector in that direction
 def getDirection(x1, y1, x2, y2)
