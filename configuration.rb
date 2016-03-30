@@ -19,6 +19,6 @@ BugWidth = 20
 BugHeight = 20
 BugMinDistance = 30 # Don't get closer to other bugs than this!
 BugMaxDistance = 100 # If too far from friends, seek them
-BugStep = 1 # How far can a bug move in a turn?
-Behavior = "behaviors/cluster"
+BugStep = 2 # How far can a bug move in a turn?
+Behavior = "behaviors/wander"
 

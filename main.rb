@@ -29,12 +29,13 @@ class Bug
 	attr_reader :x
 	attr_reader :y
 	attr_reader :direction
+	attr_reader :lastAction
 
 	# ALL EMERGENT BEHAVIOR LOGIC OCCURS IN THIS METHOD
 	def step()
 		(oldX, oldY) = [@x, @y]
 		(@x, @y, @lastAction) = bugStep(self, @bugs)
-		direction = getDirection(oldX, oldY, @x, @y)
+		@direction = getDirection(oldX, oldY, @x, @y)
 	end
 
 	def initialize(bugs)
@@ -44,7 +45,7 @@ class Bug
 		@lastAction = "towards"
 		# Start point in a random direction
 		(rX, rY) = stepRand(@x, @y, BugStep)
-		direction = getDirection(@x, @y, rX, rY)
+		@direction = getDirection(@x, @y, rX, rY)
 	end
 
 	def draw
@@ -95,6 +96,7 @@ end
 =end
 def setup
 	sketch_title Title
+	frameRate(30)
 end
 
 def draw
