@@ -33,6 +33,12 @@ def stepRand(x, y, distance)
 	return [x + d[0], y + d[1]]
 end
 
+# Given a starting and ending coordinate,
+# returns unit vector in that direction
+def getDirection(x1, y1, x2, y2)
+	return Vector[x2 - x1, y2 - y1].normalize
+end
+
 def findClosest(x, y, bugs)
 	closest = nil
 	closestDistance = 999999999999
