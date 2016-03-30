@@ -14,7 +14,7 @@ CenterY = ScreenHeight / 2
 BackgroundColor = 0x15a429 # Green
 
 # Project configuration
-NumBugs = 30 # Minimum is 2
+NumBugs = 15 # Minimum is 2
 BugWidth = 20
 BugHeight = 20
 BugMinDistance = 30 # Don't get closer to other bugs than this!
