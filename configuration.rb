@@ -14,11 +14,15 @@ CenterY = ScreenHeight / 2
 BackgroundColor = 0x15a429 # Green
 
 # Project configuration
-NumBugs = 15 # Minimum is 2
+NumBugs = 30 # Minimum is 2
 BugWidth = 20
 BugHeight = 20
 BugMinDistance = 30 # Don't get closer to other bugs than this!
 BugMaxDistance = 100 # If too far from friends, seek them
 BugStep = 2 # How far can a bug move in a turn?
-Behavior = "behaviors/wander"
+Behavior = "behaviors/warble_flock"
 
+# Colors that bugs can draw themselves as
+Orange = 1
+Purple = 2
+Blue = 3

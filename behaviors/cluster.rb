@@ -12,7 +12,8 @@ require_relative "../configuration"
 	arguments: the current bug, and the list of bugs.
 
 	The function must return the new (x, y) coordinates of the bug, and the
-	action you performed.
+	color you want the bug to display with, indicating which action it is 
+	performing.
 =end
 
 def bugStep(bug, bugs)
@@ -21,7 +22,7 @@ def bugStep(bug, bugs)
 	new_y = -1
 	x = bug.x
 	y = bug.y
-	lastAction = nil
+	color = nil
 
 	(closest, closestDistance) = findClosest(x, y, bugs)
 	#puts "Got closest distance #{closestDistance}"
@@ -29,17 +30,17 @@ def bugStep(bug, bugs)
 		(new_x, new_y) = stepTowards(x, y, closest.x, closest.y, BugStep)
 		x = new_x if( new_x > 0 && new_x < ScreenWidth )
 		y = new_y if( new_y > 0 && new_y < ScreenHeight )
-		lastAction = "towards"
+		color = Orange
 	elsif( closestDistance <= BugMinDistance ) # Move away if overpopulated
 		(new_x, new_y) = stepAway(x, y, closest.x, closest.y, BugStep)
 		x = new_x if( new_x > 0 && new_x < ScreenWidth )
 		y = new_y if( new_y > 0 && new_y < ScreenHeight )
-		lastAction = "away"
+		color = Blue
 	else # Move randomly if nothing else is pressing
 		(new_x, new_y) = stepRand(x, y, BugStep)
 		x = new_x if( new_x > 0 && new_x < ScreenWidth )
 		y = new_y if( new_y > 0 && new_y < ScreenHeight )
-		lastAction = "rand"
+		color = Purple
 	end
 
 	# Try to bounce off screen edges
@@ -54,5 +55,5 @@ def bugStep(bug, bugs)
 		y = new_y if( new_y > 0 && new_y < ScreenHeight )
 	end
 
-	return [x, y, lastAction]
+	return [x, y, color]
 end

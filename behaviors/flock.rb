@@ -6,8 +6,9 @@ require_relative "../configuration"
 =begin
 	EXAMPLE BUG BEHAVIOR
 
-	Followers will follow their closest neighbor unless they get 
-	too close or far. They will seek out or run from bugs if needed.
+	Flockers will seek out other flockers, will avoid collisions, and will
+	*usually* follow the flock, but occasionally go in their own direction
+	and set a new course for the flock. This generates more fluid motion.
 =end
 
 def bugStep(bug, bugs)
@@ -16,7 +17,7 @@ def bugStep(bug, bugs)
 	new_y = -1
 	x = bug.x
 	y = bug.y
-	lastAction = nil
+	color = nil
 
 	(closest, closestDistance) = findClosest(x, y, bugs)
 	#puts "Got closest distance #{closestDistance}"
@@ -24,13 +25,13 @@ def bugStep(bug, bugs)
 		(new_x, new_y) = stepTowards(x, y, closest.x, closest.y, BugStep)
 		x = new_x if( new_x > 0 && new_x < ScreenWidth )
 		y = new_y if( new_y > 0 && new_y < ScreenHeight )
-		lastAction = "towards"
+		color = Orange
 	elsif( closestDistance <= BugMinDistance ) # Move away if overpopulated
 		(new_x, new_y) = stepAway(x, y, closest.x, closest.y, BugStep)
 		x = new_x if( new_x > 0 && new_x < ScreenWidth )
 		y = new_y if( new_y > 0 && new_y < ScreenHeight )
-		lastAction = "away"
-	else # Go same way as our friend otherwise
+		color = Blue
+	else # Probably follow our neighbor, but maybe go a new direction
 		if( rand() < 0.995 )
 			(new_x, new_y) = stepDirection(x, y, closest.direction, BugStep)
 		else
@@ -38,7 +39,7 @@ def bugStep(bug, bugs)
 		end
 		x = new_x if( new_x > 0 && new_x < ScreenWidth )
 		y = new_y if( new_y > 0 && new_y < ScreenHeight )
-		lastAction = "rand"
+		color = Purple
 	end
 
 	# Try to bounce off screen edges
@@ -52,5 +53,5 @@ def bugStep(bug, bugs)
 		y = new_y if( new_y > 0 && new_y < ScreenHeight )
 	end
 
-	return [x, y, lastAction]
+	return [x, y, color]
 end

@@ -29,12 +29,12 @@ class Bug
 	attr_reader :x
 	attr_reader :y
 	attr_reader :direction
-	attr_reader :lastAction
+	attr_reader :color
 
 	# ALL EMERGENT BEHAVIOR LOGIC OCCURS IN THIS METHOD
 	def step()
 		(oldX, oldY) = [@x, @y]
-		(@x, @y, @lastAction) = bugStep(self, @bugs)
+		(@x, @y, @color) = bugStep(self, @bugs)
 		@direction = getDirection(oldX, oldY, @x, @y)
 	end
 
@@ -42,16 +42,16 @@ class Bug
 		@bugs = bugs
 		@x = rand(ScreenWidth).to_f
 		@y = rand(ScreenHeight).to_f
-		@lastAction = "towards"
+		@color = Orange
 		# Start point in a random direction
 		(rX, rY) = stepRand(@x, @y, BugStep)
 		@direction = getDirection(@x, @y, rX, rY)
 	end
 
 	def draw
-		fill(0xea, 0xb9, 0x0d) if( @lastAction == "towards" ) # Orange
-		fill(0x0d, 0x6b, 0xea) if( @lastAction == "away" )    # Blue
-		fill(0xbe, 0x0d, 0xea) if( @lastAction == "rand" )    # Purple
+		fill(0xea, 0xb9, 0x0d) if( @color == Orange )
+		fill(0x0d, 0x6b, 0xea) if( @color == Blue )
+		fill(0xbe, 0x0d, 0xea) if( @color == Purple )
 		ellipse @x, @y, BugWidth, BugHeight
 	end
 end
@@ -95,7 +95,7 @@ end
 	run every frame.
 =end
 def setup
-	sketch_title Title
+	sketch_title (Title + " - " + Behavior)
 	frameRate(30)
 end
 
